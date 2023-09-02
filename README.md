@@ -1,4 +1,5 @@
 # P0
-Integrantes:
-Juan David Rojas 202120434
-Santiago Castro 202122158
+## Integrantes:
+
+<p>Juan David Rojas: 202120434
+<p>Santiago Castro: 202122158
