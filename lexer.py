@@ -27,6 +27,7 @@ reserved = {
     "turnto": "TURNTO",
     "drop": "DROP",
     "get": "GET",
+    "grab": "GRAB",
     "letgo": "LETGO",
     "nop": "NOP",
     "facing": "FACING",
@@ -51,7 +52,7 @@ reserved = {
 
 tokens = tokens + list(reserved.values())
 
-t_ignore_chars = r'\s+'
+t_ignore = r' +'
 t_ASSIGN = r'='
 t_LPARENT = r'\('
 t_RPARENT = r'\)'
@@ -72,20 +73,28 @@ def t_NUMBER(token):
     token.value = int(token.value)
     return token
 
+def t_newline(token):
+    r'\n'
+    token.lexer.lineno += len(token.value)
+
 def t_error(token):
-    print("caracter ilegal '%s'" % token.value[0])
-    token.lexer.skip(1)
+    raise Exception(f"caracter ilegal {token.value[0]}")
 
-nameFileTest = "programaValido.txt"
-fileTest = codecs.open(nameFileTest, "r", "utf-8")
-contentFileTest = fileTest.read()
-fileTest.close()
+def generateTokens(pathFile: str):
+    fileTest = codecs.open(pathFile, "r", "utf-8")
+    contentFileTest = fileTest.read()
+    fileTest.close()
+    analizer = lex.lex()
+    analizer.input(contentFileTest)
+    tokens = []
+    while True:
+        token = analizer.token()
+        if not token:
+            break
+        tokens.append(token)
+    return tokens
 
-analizer = lex.lex()
-analizer.input(contentFileTest)
 
-while True:
-    token = analizer.token()
-    if not token:
-        break
-    print(token)
+
+
+
