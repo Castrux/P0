@@ -5,15 +5,15 @@ defVar one 0
 
 defProc putCB (c , b )
 {
-    drop(c) ;
-    letGo(b) ;
-    walk(n)
+    drop(c);
+    letGo(b);
+    walk(nom)
 }
 
 defProc goNorth()
 {
 
-    while can(walk(1 , north) ) { walk(1 , north) }
+    while can(walk(1 , north)) { walk(1 , north) }
 
 }
 
@@ -26,6 +26,11 @@ defProc goWest ()
 
 {
 jump (3 ,3) ;
-putCB (2 ,1)
+putCB (2 ,1);
+leap(1, north);
+nom = 3;
+repeat 3 times {
+        jump(3,2)
+    }
+while not facing(north) { turn(back) }
 }
-
