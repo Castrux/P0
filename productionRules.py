@@ -56,7 +56,7 @@ productionRules = {
     LEFT            : "LEFT",
     CHIPS           : "CHIPS",
     BALLONS         : "BALLONS",
-    SEMMICOLON      : ";",
+    SEMMICOLON      : "",
     NUMBER          : "",
     LIST_ID         : "",
     ID              : "",

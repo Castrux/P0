@@ -148,7 +148,7 @@ def processFuncsAndVariables(tokens, token, pos):
             raise Exception(f"definicion de proc incorrecto {token.lineno} caracter {token.value}")
     elif token.type == productionRules.ID:
         if token.value not in [variables.keys(), functions.keys(), arguments.keys()]:
-            raise Exception(f"argumento ilegal {token.lineno} caracter {token.value}")
+            raise Exception(f"argumento ilegal {token.lineno} var {token.value}")
 
 def parser(tokens):
     pos = 0
@@ -173,8 +173,6 @@ def parser(tokens):
             fromPos = pos + 1
             untilPos = fromPos + lenRule
             nextTokens = [t.type for t in tokens[fromPos:untilPos]]
-
-            print(token, nextTokens, rule)
 
             processFuncsAndVariables(tokens, token, fromPos)
 
@@ -202,7 +200,7 @@ def parser(tokens):
     if result:
         message = "La cadena es correcta sintacticamente"
     else:
-        message = f"Fallo en la linea {token.lineno} caracter {token.value}"
+        message = f"Fallo en la linea {token.lineno} cerca de {token.value}"
 
     return (result, message)
 
