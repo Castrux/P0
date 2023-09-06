@@ -29,6 +29,8 @@ arguments = {}
 def ruleMatch(listTokens, rule):
     if listTokens == rule:
         return True
+    if productionRules.END in rule and len(listTokens) == 0:
+        return True
     return False
 
 def checkListIDs(tokens, fromPos, rule):

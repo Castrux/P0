@@ -42,31 +42,34 @@ REPEAT          = "REPEAT"
 TIMES           = "TIMES"
 LIST_ID         = "LIST_ID"
 LIST_STATEMENTS = "LIST_STATEMENTS"
+LAMBDA          = "LAMBDA"
+END             = "END"
 
 # PRODUCTION RULES
 
 productionRules = {
-    NORTH           : "NORTH",
-    SOUTH           : "SOUTH",
-    WEST            : "WEST",
-    EAST            : "EAST",
-    FRONT           : "FRONT",
-    BACK            : "BACK",
-    RIGHT           : "RIGHT",
-    LEFT            : "LEFT",
-    CHIPS           : "CHIPS",
-    BALLONS         : "BALLONS",
-    SEMMICOLON      : "",
-    NUMBER          : "",
-    LIST_ID         : "",
-    ID              : "",
-    COMMA           : "",
-    LPARENT         : "",
-    RPARENT         : "",
-    LIST_STATEMENTS : "",
-    CAN             : "",
-    FACING          : "",
-    NOT             : "",
+    NORTH           : LAMBDA,
+    SOUTH           : LAMBDA,
+    WEST            : LAMBDA,
+    EAST            : LAMBDA,
+    FRONT           : LAMBDA,
+    BACK            : LAMBDA,
+    RIGHT           : LAMBDA,
+    LEFT            : LAMBDA,
+    CHIPS           : LAMBDA,
+    BALLONS         : LAMBDA,
+    SEMMICOLON      : LAMBDA,
+    NUMBER          : LAMBDA,
+    LIST_ID         : LAMBDA,
+    ID              : LAMBDA,
+    COMMA           : LAMBDA,
+    LPARENT         : LAMBDA,
+    RPARENT         : LAMBDA,
+    LIST_STATEMENTS : LAMBDA,
+    CAN             : LAMBDA,
+    FACING          : LAMBDA,
+    NOT             : LAMBDA,
+    END             : LAMBDA,
     RBRACKED        : [
                         [],
                         [DEFPROC],
@@ -172,7 +175,10 @@ productionRules = {
                         [NUMBER, RBRACKED],
                       ],
     DEFVAR          : [
-                        [ID, NUMBER],
+                        [ID, NUMBER, END],
+                        [ID, NUMBER, DEFPROC],
+                        [ID, NUMBER, DEFVAR],
+                        [ID, NUMBER, RBRACKED],
                       ],
     DEFPROC         : [
                         [ID, LPARENT, RPARENT, LBRACKED],
